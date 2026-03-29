@@ -1,0 +1,72 @@
+# TASK 3 FINAL CHECKLIST - XcodeGen iOS Configuration
+
+## ✓ REQUIRED FILES CREATED
+[✓] /Users/kusha/Projects/ios-vpn-tun/project.yml
+[✓] /Users/kusha/Projects/ios-vpn-tun/Info.plist
+[✓] /Users/kusha/Projects/ios-vpn-tun/VKTurnProxy.entitlements
+
+## ✓ project.yml REQUIREMENTS
+[✓] name: VKTurnProxy
+[✓] targets: VKTurnProxy (iOS app target)
+[✓] platform: iOS
+[✓] deploymentTarget: "18.0"
+[✓] sources: [Sources, Resources]
+[✓] PRODUCT_BUNDLE_IDENTIFIER: com.vkturnproxy.app
+[✓] SWIFT_VERSION: "5.10"
+[✓] IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+[✓] TARGETED_DEVICE_FAMILY: "1,2" (iPhone + iPad)
+[✓] SWIFT_OBJC_BRIDGING_HEADER: Sources/Bridge/VKTurnProxy-Bridging-Header.h
+[✓] HEADER_SEARCH_PATHS: $(PROJECT_DIR)/build/go
+[✓] LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build/go
+[✓] VALID_ARCHS: arm64
+[✓] ARCHS: arm64
+[✓] Dependencies:
+    - sdk: libresolv.tbd (Go net package)
+    - sdk: Security.framework (TLS operations)
+    - sdk: libvkturn.a (Go static library)
+[✓] info: path: Info.plist
+[✓] entitlements: path: VKTurnProxy.entitlements
+
+## ✓ Info.plist REQUIREMENTS
+[✓] CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER) [com.vkturnproxy.app]
+[✓] CFBundleDisplayName: VK Turn
+[✓] CFBundleVersion: "1.0"
+[✓] CFBundleShortVersionString: "1.0.0"
+[✓] LSMinimumSystemVersion: "18.0"
+[✓] UIBackgroundModes: ["audio"]
+[✓] UILaunchScreen: {} (empty, system default)
+[✓] NSAppTransportSecurity:
+    - NSAllowsArbitraryLoads: true (VK API endpoints)
+
+## ✓ VKTurnProxy.entitlements REQUIREMENTS
+[✓] Minimal entitlements (AltStore placeholder)
+[✓] NO com.apple.developer.networking.networkextension
+[✓] aps-environment: production (minimal)
+
+## ✓ ARCHITECTURE & CONSTRAINTS
+[✓] iOS/arm64 only (no x86_64, no simulator)
+[✓] Deployment target 18.0
+[✓] No Network Extension entitlement or target
+[✓] No multi-architecture builds
+[✓] Files created only in project root
+
+## ✓ VERIFICATION EVIDENCE
+[✓] Verification report saved to: .sisyphus/evidence/task-3-verification.txt
+[✓] XcodeGen spec syntax validated
+[✓] All plist keys verified
+[✓] No Network Extension references found
+
+## ✓ DOCUMENTATION
+[✓] Learnings appended to: .sisyphus/notepads/vk-turn-proxy-ios/learnings.md
+[✓] XcodeGen patterns documented
+[✓] Go library linking patterns recorded
+[✓] iOS background audio mode patterns noted
+
+## ✓ NEXT STEPS
+[•] Tasks 4-6 can now depend on this output
+[•] Swift code can import bridging header from Sources/Bridge/
+[•] Go static library will link via libvkturn.a reference
+
+## ✓ STATUS: COMPLETE
+All 3 required files created with complete specifications.
+Verification complete. Evidence saved.

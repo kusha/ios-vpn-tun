@@ -1,0 +1,23 @@
+TEST: Build script prerequisite check (Go + Xcode verification)
+=================================================================
+
+EXECUTION:
+  cd /Users/kusha/Projects/ios-vpn-tun && ./scripts/build-go.sh
+
+EXPECTED: Should detect Go installed and Xcode CLI Tools, attempt iOS SDK resolution
+
+RESULT:
+✓ Go version check: PASS (detected go1.26.1)
+✓ Xcode path check: PASS (detected /Library/Developer/CommandLineTools)
+✓ iOS SDK resolution: EXPECTED FAIL (no iOS SDK in CLI tools on non-Mac with Xcode)
+✓ Error message: Clear and actionable
+
+SCRIPT BEHAVIOR:
+- Prints "[INFO] Verifying prerequisites..."
+- Detects Go: go1.26.1
+- Detects Xcode: /Library/Developer/CommandLineTools
+- Attempts iOS SDK via xcrun --sdk iphoneos
+- Gracefully exits with ERROR message when SDK unavailable
+- Exit code: 1 (correct)
+
+VERDICT: ✓ PASS - Error handling working correctly

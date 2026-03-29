@@ -1,0 +1,8 @@
+total 72
+drwxr-xr-x  7 kusha  staff    224 Mar 30 01:27 .
+drwxr-xr-x  9 kusha  staff    288 Mar 30 01:25 ..
+-rw-r--r--  1 kusha  staff   1380 Mar 30 01:27 bridge.go
+-rw-r--r--  1 kusha  staff    822 Mar 30 01:28 go.mod
+-rw-r--r--  1 kusha  staff   4770 Mar 30 01:28 go.sum
+-rw-r--r--  1 kusha  staff  11841 Mar 30 01:27 proxy.go
+-rw-r--r--  1 kusha  staff   4134 Mar 30 01:27 vkcreds.go

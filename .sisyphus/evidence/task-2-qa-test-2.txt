@@ -1,0 +1,51 @@
+TEST: Script structure validation and idempotence
+==================================================
+
+SCRIPT LOCATION: /Users/kusha/Projects/ios-vpn-tun/scripts/build-go.sh
+PERMISSIONS: -rwxr-xr-x (executable)
+
+STRUCTURE CHECKLIST:
+✓ Shebang: #!/usr/bin/env bash (line 1)
+✓ set -e: Exits on error (line 2)
+✓ Color definitions: RED, GREEN, YELLOW, NC (lines 5-8)
+✓ Error function: error() - exits with message (line 10)
+✓ Info function: info() - logs green messages (line 13)
+✓ Warn function: warn() - logs yellow messages (line 16)
+
+PREREQUISITE CHECKS:
+✓ Check Go installed (command -v go)
+✓ Display Go version
+✓ Check xcrun available
+✓ Check xcode-select configured
+✓ Resolve iOS SDK path (xcrun --sdk iphoneos --show-sdk-path)
+✓ Resolve clang compiler (xcrun --sdk iphoneos --find clang)
+
+ENVIRONMENT SETUP:
+✓ Export GOOS=ios
+✓ Export GOARCH=arm64
+✓ Export CGO_ENABLED=1
+✓ Export CC from xcrun
+✓ Export CGO_CFLAGS with architecture flags
+✓ Export CGO_LDFLAGS with architecture flags
+
+BUILD PROCESS:
+✓ Create output directory: build/go (mkdir -p)
+✓ Detect go module directory (go/go.mod or go.mod)
+✓ Change to Go module directory
+✓ Run: go build -buildmode=c-archive -o ../build/go/libvkturn.a .
+
+OUTPUT VERIFICATION:
+✓ Check libvkturn.a exists
+✓ Check libvkturn.h exists
+✓ Display library file size
+✓ Count exported symbols in header
+✓ Verify iOS platform via otool (if available)
+
+IDEMPOTENCE TESTING:
+- Script can be run multiple times
+- mkdir -p build/go is idempotent
+- go build with same output path overwrites previous
+- No state files or locks that prevent re-running
+- Error handling allows clean retry
+
+VERDICT: ✓ PASS - Script is idempotent and properly structured

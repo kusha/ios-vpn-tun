@@ -1,0 +1,20 @@
+Step 1: grep @main
+@main
+
+Step 2: grep struct ContentView
+struct ContentView: View {
+
+Step 3: grep ProxyManager
+    @StateObject private var proxyManager = ProxyManager()
+
+Step 4: grep TextField
+            TextField("VK Link (e.g. https://vk.com/call/join/...)", text: $vkLink)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Peer Address (e.g. 1.2.3.4:56000)", text: $peer)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+Step 5: grep Button
+            Button(action: toggleConnection) {
+
+Step 6: grep NO NAV components
+NO NAV - CORRECT

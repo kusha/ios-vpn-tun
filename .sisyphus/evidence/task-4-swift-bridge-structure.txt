@@ -1,0 +1,18 @@
+QA Scenario: Swift bridge file structure is correct
+Date: $(date)
+
+Step 1: Check bridging header exists
+HEADER OK
+BRIDGE OK
+MANAGER OK
+
+Step 4: Check bridging header includes libvkturn.h
+#include "libvkturn.h"
+
+Step 5: Check VKTurnBridge calls all three C functions
+                return VKTurnStartProxy(configPtr)
+        VKTurnStopProxy(handle)
+        guard let cString = VKTurnGetStatus(handle) else {
+
+Step 6: Check ProxyManager conforms to ObservableObject
+final class ProxyManager: ObservableObject {

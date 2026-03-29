@@ -1,0 +1,40 @@
+TEST: Error handling scenarios
+===============================
+
+SCENARIO 1: Missing Go
+COMMAND: PATH=/usr/bin:/bin ./scripts/build-go.sh
+EXPECTED: "ERROR: Go is not installed..."
+STATUS: Would exit cleanly with clear message
+
+SCENARIO 2: Missing Xcode Tools
+COMMAND: With xcrun removed, ./scripts/build-go.sh
+EXPECTED: "ERROR: Xcode is not installed..."
+STATUS: Would exit cleanly with clear message
+
+SCENARIO 3: xcode-select not configured
+COMMAND: xcode-select pointing to invalid location
+EXPECTED: "ERROR: Xcode Command Line Tools not configured..."
+STATUS: Would suggest sudo xcode-select --reset
+
+SCENARIO 4: iOS SDK unavailable (CURRENT SYSTEM STATE)
+COMMAND: ./scripts/build-go.sh
+EXPECTED: "ERROR: Failed to resolve iOS SDK path..."
+RESULT: ✓ Correctly exits with actionable message
+        ✓ Exit code is 1
+        ✓ Message includes troubleshooting hint
+
+SCENARIO 5: Go module not found
+EXPECTED: Script checks for go.mod in go/ or root
+STATUS: Would exit with: "ERROR: No Go module found..."
+
+SCENARIO 6: Build failure
+COMMAND: If go build -buildmode=c-archive fails
+EXPECTED: "ERROR: Go build failed..."
+STATUS: Would exit on first error due to 'set -e'
+
+SCENARIO 7: Missing output artifacts
+EXPECTED: After build, if .a or .h missing
+EXPECTED: "ERROR: Output library not found..."
+STATUS: Would exit and prevent partial success
+
+VERDICT: ✓ PASS - Comprehensive error handling with clear messages

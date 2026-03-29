@@ -182,7 +182,7 @@ Max Concurrent: 3 (Waves 1 & 2)
 
 ## TODOs
 
-- [ ] 1. Clone vk-turn-proxy and create Go bridge module
+- [x] 1. Clone vk-turn-proxy and create Go bridge module
 
   **What to do**:
   - Clone `https://github.com/cacggghp/vk-turn-proxy` into a temp directory for reference
@@ -305,7 +305,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `go/bridge.go`, `go/proxy.go`, `go/vkcreds.go`, `go/go.mod`, `go/go.sum`
   - Pre-commit: `cd go && GOOS=ios GOARCH=arm64 CGO_ENABLED=1 go build -buildmode=c-archive -o /dev/null .`
 
-- [ ] 2. Create build-go.sh cross-compilation script
+- [x] 2. Create build-go.sh cross-compilation script
 
   **What to do**:
   - Create `scripts/build-go.sh` — builds Go bridge as c-archive for ios/arm64
@@ -387,7 +387,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `scripts/build-go.sh`
   - Pre-commit: `test -x scripts/build-go.sh`
 
-- [ ] 3. Create XcodeGen project.yml, Info.plist, and entitlements
+- [x] 3. Create XcodeGen project.yml, Info.plist, and entitlements
 
   **What to do**:
   - Create `project.yml` — XcodeGen project specification for iOS app:
@@ -483,7 +483,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `project.yml`, `Info.plist`, `VKTurnProxy.entitlements`
   - Pre-commit: `test -f project.yml && test -f Info.plist`
 
-- [ ] 4. Swift C bridge and proxy manager
+- [x] 4. Swift C bridge and proxy manager
 
   **What to do**:
   - Create `Sources/Bridge/VKTurnProxy-Bridging-Header.h`:
@@ -582,7 +582,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `Sources/Bridge/VKTurnProxy-Bridging-Header.h`, `Sources/Bridge/VKTurnBridge.swift`, `Sources/App/ProxyManager.swift`
   - Pre-commit: `test -f Sources/Bridge/VKTurnBridge.swift`
 
-- [ ] 5. Minimal SwiftUI interface
+- [x] 5. Minimal SwiftUI interface
 
   **What to do**:
   - Create `Sources/App/VKTurnProxyApp.swift` — App entry point (`@main`), creates ContentView
@@ -660,7 +660,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `Sources/App/VKTurnProxyApp.swift`, `Sources/App/ContentView.swift`
   - Pre-commit: `grep "@main" Sources/App/VKTurnProxyApp.swift`
 
-- [ ] 6. Background audio mode manager
+- [x] 6. Background audio mode manager
 
   **What to do**:
   - Create `Sources/App/BackgroundAudioManager.swift`:

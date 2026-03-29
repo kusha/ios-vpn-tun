@@ -1,0 +1,40 @@
+name: VKTurnProxy
+
+options:
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "16.0"
+  projectFormat: xcode16_0
+
+targets:
+  VKTurnProxy:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: Sources
+        excludes:
+          - "*.md"
+      - path: Resources
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vkturnproxy.app
+        PRODUCT_NAME: VK Turn
+        SWIFT_VERSION: "5.10"
+        IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/Bridge/VKTurnProxy-Bridging-Header.h
+        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/build/go
+        LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build/go
+        VALID_ARCHS: arm64
+        ARCHS: arm64
+        CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - sdk: libresolv.tbd
+      - sdk: Security.framework
+      - sdk: libvkturn.a
+    info:
+      path: Info.plist
+    entitlements:
+      path: VKTurnProxy.entitlements
