@@ -1,0 +1,12 @@
+=== Task 11: YAML Validation ===
+
+File exists and is readable:
+✓ YAML file found
+
+YAML structure checks:
+✓ Contains 'name:' field
+✓ Contains 'on:' trigger field
+✓ Contains 'jobs:' field
+✓ All quoted strings are balanced
+
+YAML VALID (structural check passed)

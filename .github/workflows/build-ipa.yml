@@ -1,0 +1,48 @@
+name: Build IPA
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: true
+      
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+      
+      - name: Build IPA
+        run: ./build.sh
+      
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VKTurnProxy-IPA
+          path: build/VKTurnProxy.ipa
+      
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          gh release create ${{ github.ref_name }} \
+            build/VKTurnProxy.ipa \
+            --title "VK Turn Proxy ${{ github.ref_name }}" \
+            --notes "Unsigned IPA for sideloading via AltStore/Sideloadly"
+        env:
+          GH_TOKEN: ${{ github.token }}

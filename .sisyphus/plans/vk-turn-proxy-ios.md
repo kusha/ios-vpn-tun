@@ -1095,7 +1095,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `README.md`
   - Pre-commit: `test -f README.md`
 
-- [ ] 11. GitHub Actions CI workflow for building IPA without local Xcode
+- [x] 11. GitHub Actions CI workflow for building IPA without local Xcode
 
   **What to do**:
   - Create `.github/workflows/build-ipa.yml` — GitHub Actions workflow that builds the unsigned IPA entirely in CI

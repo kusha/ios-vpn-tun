@@ -1,0 +1,23 @@
+=== Task 11: Workflow Structure Verification ===
+
+1. Runner (macos-15):
+    runs-on: macos-15
+
+2. Go setup:
+        uses: actions/setup-go@v5
+
+3. XcodeGen install:
+        run: brew install xcodegen
+
+4. Build script call:
+        run: ./build.sh
+
+5. Artifact upload:
+        uses: actions/upload-artifact@v4
+
+6. Release creation:
+          gh release create ${{ github.ref_name }} \
+
+7. Manual dispatch trigger:
+  workflow_dispatch:
+

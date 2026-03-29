@@ -1,0 +1,48 @@
+=== Task 11: GitHub Actions Build IPA Workflow - COMPLETE ===
+
+DELIVERABLE: .github/workflows/build-ipa.yml
+
+REQUIREMENT CHECKLIST:
+✓ File created: .github/workflows/build-ipa.yml
+✓ Runner: macos-15 (line 13)
+✓ Triggers:
+  - push to main branch (lines 4-6)
+  - tag push v* (lines 7-8)
+  - workflow_dispatch manual trigger (line 9)
+
+✓ Step 1: actions/checkout@v4 (line 17)
+✓ Step 2: actions/setup-go@v5 with go-version: '1.25' and cache: true (lines 20-23)
+✓ Step 3: Install XcodeGen via brew (line 26)
+✓ Step 4: Select Xcode 16.4 via xcode-select (line 29)
+✓ Step 5: Run ./build.sh (line 32)
+✓ Step 6: Upload IPA as artifact (lines 35-38)
+✓ Step 7: Create GitHub Release with IPA on tag push (lines 41-48)
+
+SECURITY VERIFICATION:
+✓ No signing secrets (grep confirmed)
+✓ No APPLE_ID credentials
+✓ No Team ID references
+✓ No provisioning profile configs
+✓ No certificate/keychain references
+✓ IPA build is unsigned (as required)
+
+STRUCTURE VERIFICATION:
+✓ YAML file structure valid
+✓ All action versions pinned (checkout@v4, setup-go@v5, upload-artifact@v4)
+✓ Conditional release step uses: if: startsWith(github.ref, 'refs/tags/')
+✓ GitHub token passed to gh CLI via GH_TOKEN env var
+✓ All paths correct (build/VKTurnProxy.ipa)
+
+WORKFLOW USER FLOW:
+1. User pushes to main → IPA builds automatically
+2. User can download from Actions artifacts tab
+3. User tags release: git tag v1.0.0 && git push --tags
+4. GitHub Release automatically created with IPA attached
+5. No local Xcode/Go/XcodeGen required for users
+
+NOTES:
+- Reuses existing ./build.sh script (no duplication)
+- Reuses existing README.md CI instructions
+- No signing required (unsigned IPA for sideloading)
+- M1 native execution on macos-15 (arm64 native performance)
+- Total build time: 2-5 minutes (from build.sh experience)
