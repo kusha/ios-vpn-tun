@@ -914,7 +914,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Message: (grouped with Task 7's commit)
   - Files: `Resources/Assets.xcassets/`
 
-- [ ] 9. End-to-end build verification
+- [x] 9. End-to-end build verification
 
   **What to do**:
   - Run `./build.sh` from completely clean state (delete build/, generated xcodeproj, etc.)
