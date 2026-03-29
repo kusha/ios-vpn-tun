@@ -1,0 +1,5 @@
+[INFO] VKTurnProxy unsigned IPA build (expected time: 2-5 minutes)
+[INFO] Step 1/8: Checking prerequisites
+ERROR: xcodebuild is not usable. Install/launch Xcode.app once and accept licenses.
+
+EXIT CODE: 1

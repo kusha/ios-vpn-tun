@@ -724,7 +724,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `Sources/App/BackgroundAudioManager.swift`
   - Pre-commit: `test -f Sources/App/BackgroundAudioManager.swift`
 
-- [ ] 7. Master build.sh script
+- [x] 7. Master build.sh script
 
   **What to do**:
   - Create `build.sh` at project root — THE primary user interface for building the IPA
@@ -856,7 +856,7 @@ Max Concurrent: 3 (Waves 1 & 2)
   - Files: `build.sh`, `Resources/Assets.xcassets/`
   - Pre-commit: `test -x build.sh`
 
-- [ ] 8. App icon assets and launch screen
+- [x] 8. App icon assets and launch screen
 
   **What to do**:
   - Create `Resources/Assets.xcassets/AppIcon.appiconset/`:

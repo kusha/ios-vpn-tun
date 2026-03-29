@@ -1,0 +1,25 @@
+Scenario: build.sh detects missing prerequisites
+---
+      10
+---
+       8
+---
+require_cmd xcodebuild "Install full Xcode.app from the App Store, then run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer"
+XCODEBUILD_VERSION="$(xcodebuild -version 2>/dev/null || true)"
+[ -n "$XCODEBUILD_VERSION" ] || error "xcodebuild is not usable. Install/launch Xcode.app once and accept licenses."
+  warn "Continuing because xcodebuild is available, but full Xcode.app is still required."
+GO_VERSION_RAW="$(go version 2>/dev/null || true)"
+require_cmd xcodegen "Install XcodeGen with: brew install xcodegen"
+XCODEGEN_VERSION="$(xcodegen --version 2>/dev/null || true)"
+[ -n "$XCODEGEN_VERSION" ] || error "xcodegen is not usable. Reinstall with: brew install xcodegen"
+(cd "$PROJECT_ROOT" && xcodegen generate)
+(cd "$PROJECT_ROOT" && xcodebuild archive \
+---
+  command -v "$cmd" >/dev/null 2>&1 || error "$cmd is not installed. $help"
+require_cmd xcodebuild "Install full Xcode.app from the App Store, then run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer"
+[ -n "$XCODEBUILD_VERSION" ] || error "xcodebuild is not usable. Install/launch Xcode.app once and accept licenses."
+require_cmd go "Install Go 1.25+ from https://go.dev/dl/ or brew install go"
+version_ge "$GO_VERSION" "1.25" || error "Go $GO_VERSION detected; Go 1.25+ is required. Upgrade with: brew install go"
+require_cmd xcodegen "Install XcodeGen with: brew install xcodegen"
+[ -n "$XCODEGEN_VERSION" ] || error "xcodegen is not usable. Reinstall with: brew install xcodegen"
+printf "%b\n" "3) Install to your iPhone/iPad (AltStore/Sideloadly will sign at install time)"

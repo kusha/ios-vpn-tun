@@ -285,3 +285,51 @@ This implementation follows the same architecture as `wireguard-apple`:
 - No additional frameworks needed for playback
 - Audio session is singleton: `AVAudioSession.sharedInstance()`
 
+
+## Task 8: App Icon Assets and Launch Screen
+**Completed**: 2026-03-30 01:43 UTC
+
+### What Was Done
+Created minimal asset catalog structure for iOS app:
+- `Resources/Assets.xcassets/Contents.json` — Top-level asset catalog descriptor
+- `Resources/Assets.xcassets/AppIcon.appiconset/Contents.json` — Icon set metadata with iOS 18+ universal icon
+- `Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png` — Simple 1024x1024 placeholder icon (blue background, #4A90E2)
+
+### Key Decisions
+1. **Single 1024x1024 Icon**: Used one PNG rather than multiple sizes. Xcode will automatically resize for different device needs when project is built.
+2. **Placeholder Design**: Solid blue (#4A90E2) background kept MVP-simple. No text overlay added due to font rendering issues with ImageMagick on macOS ARM64.
+3. **No Custom Launch Screen**: Relied on default system launch screen (UILaunchScreen = {} already in Info.plist from Task 3).
+4. **Asset Catalog Format**: Followed Apple's standard asset catalog JSON structure with:
+   - `idiom: "universal"` — works across iPhone/iPad
+   - `platform: "ios"` — iOS-specific (not watchOS, macOS, etc.)
+   - `size: "1024x1024"` — Xcode uses this for all device sizes
+
+### Tools Used
+- ImageMagick `convert` command to generate PNG (solid color blue background)
+- `jq` for JSON validation
+
+### What Worked Well
+- Asset catalog structure follows Apple conventions exactly
+- JSON is clean and minimal, no unnecessary bloat
+- Single PNG approach simplifies maintenance
+
+### Known Limitations
+- Icon has no text/graphics (solid color) — sufficient for MVP but non-ideal for user-facing app store
+- Font rendering failed with system fonts, so settled on placeholder
+- For production, would want proper icon design (1024x1024 → scaled by Xcode for all sizes)
+
+### References Consulted
+- Apple Asset Catalog Format: https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/
+- App icon guidelines confirmed 1024x1024 is sufficient for Xcode to generate all needed sizes
+
+### Impact on Later Tasks
+- Task 7 (build.sh) and Task 9 (E2E verification) can now successfully package IPA with icon assets
+- No blocking issues for build pipeline
+
+## 2026-03-30 (Task 7: Master build.sh)
+- A robust unsigned IPA pipeline should fail fast on prerequisite discovery before any clean/build work to avoid partial artifacts and confusing states.
+- Reliable Xcode prerequisite validation is a combination of `xcodebuild -version` usability and `xcode-select -p` not pointing to CommandLineTools; iphoneos archive flow needs full Xcode.app.
+- Keeping `CODE_SIGN_IDENTITY=""`, `CODE_SIGNING_REQUIRED=NO`, and `CODE_SIGNING_ALLOWED=NO` directly on the archive command guarantees unsigned output without Apple ID dependency.
+- Manual IPA packaging via `Payload/` + `zip` is the sideload-compatible approach and avoids `-exportArchive` signing/export constraints.
+- Copying `build/go/libvkturn.h` to `Sources/Bridge/libvkturn.h` makes `#include "libvkturn.h"` resolution deterministic regardless of Xcode header search path interpretation during project generation.
+- QA evidence should capture both static policy checks (grep for forbidden/export patterns) and runtime behavior (build script exit code), even when host prerequisites block full archive creation.

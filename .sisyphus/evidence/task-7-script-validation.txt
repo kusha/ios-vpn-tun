@@ -1,0 +1,12 @@
+bash -n: OK
+CODE_SIGNING_ALLOWED check:
+  CODE_SIGNING_ALLOWED=NO \
+Payload check:
+info "Step 6/8: Packaging unsigned IPA (manual Payload zip)"
+mkdir -p "$BUILD_DIR/Payload"
+cp -R "$ARCHIVE_PATH/Products/Applications/VKTurnProxy.app" "$BUILD_DIR/Payload/"
+(cd "$BUILD_DIR" && zip -r VKTurnProxy.ipa Payload >/dev/null)
+unzip -l "$IPA_PATH" | grep -q "Payload/VKTurnProxy.app/VKTurnProxy" || error "IPA missing app binary: Payload/VKTurnProxy.app/VKTurnProxy"
+unzip -l "$IPA_PATH" | grep -q "Payload/VKTurnProxy.app/Info.plist" || error "IPA missing Info.plist: Payload/VKTurnProxy.app/Info.plist"
+Forbidden export/signing check:
+NO SIGNING - CORRECT

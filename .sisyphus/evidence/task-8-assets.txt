@@ -1,0 +1,15 @@
+=== QA Scenario: Asset catalog has valid structure ===
+
+Step 1: Check top-level Contents.json
+✓ CATALOG OK
+
+Step 2: Check AppIcon.appiconset Contents.json
+✓ ICON SET OK
+
+Step 3: Count PNG files in AppIcon.appiconset
+PNG files:        1
+✓ At least 1 PNG found
+
+Step 4: Verify PNG file format and size
+Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png: PNG image data, 1024 x 1024, 1-bit colormap, non-interlaced
+-rw-r--r--  1 kusha  staff   451B Mar 30 01:43 Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png

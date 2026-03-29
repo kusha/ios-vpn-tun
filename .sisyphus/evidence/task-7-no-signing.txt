@@ -1,0 +1,3 @@
+Scenario: build.sh does not use signing or exportArchive
+---
+NO SIGNING - CORRECT
