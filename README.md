@@ -2,6 +2,12 @@
 
 An iOS port of [vk-turn-proxy](https://github.com/cacggghp/vk-turn-proxy). This app allows you to tunnel WireGuard traffic through VK call TURN servers, which can help bypass certain network restrictions.
 
+## Download
+
+**[Download VKTurnProxy.ipa from Releases](https://github.com/kusha/ios-vpn-tun/releases/latest)**
+
+No need to build from source - grab the pre-built IPA and install via AltStore/Sideloadly.
+
 ## Prerequisites
 
 - iPhone or iPad running **iOS 18+**
