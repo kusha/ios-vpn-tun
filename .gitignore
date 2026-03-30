@@ -1,0 +1,28 @@
+# Build artifacts
+build/
+*.ipa
+*.xcarchive
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+*.xcuserdata
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Go
+go/go
+*.a
+*.o
+*.test
+*.exe
+
+# Swift
+.build/
+*.swiftpm
+
+# macOS
+.DS_Store
