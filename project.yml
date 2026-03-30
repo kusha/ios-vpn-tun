@@ -20,7 +20,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.vkturnproxy.app
-        PRODUCT_NAME: VK Turn
+        PRODUCT_NAME: VKTurnProxy
         SWIFT_VERSION: "5.10"
         IPHONEOS_DEPLOYMENT_TARGET: "18.0"
         TARGETED_DEVICE_FAMILY: "1,2"
