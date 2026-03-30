@@ -48,7 +48,7 @@ final class BackgroundAudioManager {
             }
             
             // Create audio player with silence data
-            audioPlayer = try AVAudioPlayer(data: silenceData, fileTypeHint: .wav)
+            audioPlayer = try AVAudioPlayer(data: silenceData, fileTypeHint: AVFileType.wav.rawValue)
             
             guard let audioPlayer = audioPlayer else {
                 print("[BackgroundAudio] Failed to create audio player")

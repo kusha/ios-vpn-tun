@@ -32,7 +32,7 @@ final class VKTurnBridge {
             }
             
             return jsonString.withCString { configPtr in
-                return VKTurnStartProxy(configPtr)
+                return VKTurnStartProxy(UnsafeMutablePointer(mutating: configPtr))
             }
         } catch {
             return -1

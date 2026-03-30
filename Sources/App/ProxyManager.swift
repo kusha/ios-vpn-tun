@@ -33,9 +33,9 @@ final class ProxyManager: ObservableObject {
     // MARK: - Lifecycle
     
     deinit {
-        if isRunning {
-            Task {
-                await disconnect()
+        Task { @MainActor in
+            if self.isRunning {
+                await self.disconnect()
             }
         }
     }
@@ -75,7 +75,8 @@ final class ProxyManager: ObservableObject {
     }
     
     /// Disconnect from VK TURN server
-    func disconnect() {
+    @MainActor
+    func disconnect() async {
         guard isRunning else {
             addLog("Not connected")
             return
