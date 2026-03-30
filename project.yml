@@ -33,7 +33,7 @@ targets:
     dependencies:
       - sdk: libresolv.tbd
       - sdk: Security.framework
-      - sdk: libvkturn.a
+      - path: build/go/libvkturn.a
     info:
       path: Info.plist
     entitlements:
